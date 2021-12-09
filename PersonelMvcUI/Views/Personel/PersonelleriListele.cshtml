@@ -1,0 +1,31 @@
+﻿@model IEnumerable<PersonelMvcUI.Models.EntittyFramework.Personel>
+
+<h1>Personel Listesi</h1>
+
+<table class=" table table-bordered" id="tblPersoneller">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Maaş</th>
+            <th>Yaş</th>
+            <th>Doğum Tarihi</th>
+            <th>Cinsiyet</th>
+            <th>Evlilik Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personel in Model)
+        {
+            <tr>
+                <td>@personel.Ad</td>
+                <td>@personel.Soyad</td>
+                <td>@personel.Maas TL</td>
+                <td>@(DateTime.Now.Year - personel.DogumTarihi.Value.Year)</td>
+                <td>@personel.DogumTarihi.Value.ToShortDateString()</td>
+                <td>@(personel.Cinsiyet==true?"Erkek":"Kadın")</td>
+                <td>@(personel.EvliMi==true?"Evli":"Bekar")</td>
+            </tr>
+        }
+    </tbody>
+</table>

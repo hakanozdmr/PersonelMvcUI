@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PersonelMvcUI.Models.EntittyFramework.Kullanici>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kullanıcı Anasayfa</h2>
+
+<p>
+    <a class="btn btn-success" href="/Kullanici/Create">Yeni Kullanıcı</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            <a class="btn btn-primary" href="/Kullanici/Edit/@item.Id">Güncelle</a>
+            <a class="btn btn-warning" href="/Kullanici/Details/@item.Id">Detaylar</a>
+            <a class="btn btn-danger" href="/Kullanici/Delete/@item.Id">Sil</a>
+           
+        </td>
+    </tr>
+}
+
+</table>

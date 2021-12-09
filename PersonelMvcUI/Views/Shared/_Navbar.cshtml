@@ -1,0 +1,42 @@
+﻿@*<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Index">Personel Yönetim Sistemi</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/Departman">Departmanlar</a></li>
+                <li><a href="/Personel">Personeller</a></li>
+                <li><a href="#">Giriş Yap</a></li>
+                <li><a href="#">Üye Ol</a></li>
+            </ul>
+        </div>
+    </nav>*@
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" style="font-weight:bold; color :orange" href="/Home/Index">Personel Yönetim Sistemi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id ="navbarsExample03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active" style="font-weight:bold; color :orange" " aria-current="page" href="/Departman">Departmanlar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" style="font-weight:bold; color :orange" href="/Personel">Personeller</a>
+                </li>
+                @if (User.IsInRole("A"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" style="font-weight:bold; color :orange" href="/Kullanici">Kullanıcılar</a>
+                    </li>
+                }
+            </ul>
+            @*<a class="navbar-brand text-danger"style="font-weight:bold;" >Toplam Gider :   @{Html.RenderAction("ToplamMaas", "Personel");} TL<a/>*@
+            <a class="navbar-brand"style="font-weight:bold; color :orangered" >Kullanıcı : <a/>
+            <a class="navbar-brand"style="font-weight:bold; color : darkgrey" >@HttpContext.Current.User.Identity.Name</a>
+            <a class="btn btn-warning" href="~/Security/Logout"> Çıkış yap </a>
+        </div>
+    </div>
+</nav>

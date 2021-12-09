@@ -1,0 +1,58 @@
+﻿
+@model List<PersonelMvcUI.Models.EntittyFramework.Personel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+@if (User.IsInRole("A") || User.IsInRole("E"))
+{
+    <a class="btn btn-success" href="/Personel/Yeni"> Personel Ekle </a>
+}
+    <h2>Personel Listesi</h2>
+    <br />
+    <br />
+    <table class=" table table-bordered" id="tblPersoneller">
+        <thead>
+            <tr>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Departman</th>
+                <th>Maaş</th>
+                <th>Yaş</th>
+                <th>Doğum Tarihi</th>
+                <th>Cinsiyet</th>
+                <th>Evlilik Durumu</th>
+                @if (User.IsInRole("A") || User.IsInRole("E"))
+                {
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                }
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var personel in Model)
+            {
+                <tr>
+                    <td>@personel.Ad</td>
+                    <td>@personel.Soyad</td>
+                    <td>@personel.Departman.Ad</td>
+                    <td>@personel.Maas</td>
+                    <td>@(DateTime.Now.Year - personel.DogumTarihi.Value.Year)</td>
+                    <td>@personel.DogumTarihi.Value.ToString("dd.MM.yyyy")</td>
+                    <td>@(personel.Cinsiyet==true?"Erkek":"Kadın")</td>
+                    <td>@(personel.EvliMi==true?"Evli":"Bekar")</td>
+                    @if (User.IsInRole("A") || User.IsInRole("E"))
+                    {
+                        <td>@Html.ActionLink("Güncelle", "Guncelle", new { id = personel.Id }, new { @class = "btn btn-primary" })</td>
+                        <td><a class="btn btn-danger btnPersonelSil" data-id="@personel.Id">Sil</a></td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
